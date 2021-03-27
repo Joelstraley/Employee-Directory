@@ -1,7 +1,6 @@
 import React from "react";
-import "./style.css";
 
-// Using the datalist element we can create autofill suggestions based on the props.breeds array
+
 function SearchForm(props) {
   return (
     <form className="search">
@@ -14,7 +13,7 @@ function SearchForm(props) {
           list="term"
           type="text"
           className="form-control"
-          placeholder="Type to search for an employee"
+          placeholder="Type in a search term to begin"
           id="term"
         />
       </div>

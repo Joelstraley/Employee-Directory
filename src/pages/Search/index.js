@@ -1,63 +1,73 @@
-import React, { Component, useState, useEffect } from "react";
+import React, { Component } from "react";
 import API from "../../utils/API";
 import Container from "../../components/Container";
 import SearchForm from "../../components/SearchForm";
 import SearchResults from "../../components/SearchResults";
-import Alert from "../../components/Alert";
-
-class Search extends Component {
-  state = {
-    search: "",
-    employees: [],
-    results: [],
-    error: ""
-  };
-
 
 
   // When the component mounts, get a list of all available base breeds and update this.state.breeds
-  componentDidMount() {
-    API.populate()
-      .then(res => this.setState({ employees: res.data.message }))
-      .catch(err => console.log(err));
+ /*  async componentDidMount() {
+      const url = "https://api.randomuser.me/";
+      const response = await fetch(url);
+      const data = await response.json();
+      this.setState({ employee: data.results[0]});
+      console.log(data.results[0]);
+  } */
+
+/*   function Search() {
+    const [query, setSearch] = useState("");
+    const [image, setImage] = useState("");
+    const [name, setName] = useState("");
+    const [address, setAddress] = useState("");
+    const [phone, setPhone] = useState("");
+    const [email, setEmail] = useState("");
+    const [error, setError] = useState("");
+
+  
+    useEffect(() => {
+      if (!query) {
+        return;
+      } if (query) { */
+
+class Search extends Component {
+  state = {
+    search: "", 
+    image: "",
+    name: "",
+    address: "",
+    phone: "",
+    email: "",
+    results: [],
+    error: "" 
   }
 
-  handleInputChange = event => {
-    this.setState({ search: event.target.value });
-  };
+  componentDidMount() {
+        API.search()
+          .then(res => this.setState({ name: res.results.name }))
+        
+          .catch(err => console.log(err));
+      }
+          
+  
+/*   handleInputChange = event => {
+        this.setState({ search: event.target.value });
+      }; */
 
-  handleFormSubmit = event => {
-    event.preventDefault();
-    API.search(this.state.search)
-      .then(res => {
-        if (res.data.status === "error") {
-          throw new Error(res.data.message);
-        }
-        this.setState({ results: res.data.message, error: "" });
-      })
-      .catch(err => this.setState({ error: err.message }));
-  };
-  render() {
+  render(){
     return (
       <div>
-        <Container style={{ minHeight: "80%" }}>
-          <h1 className="text-center">Search for Employee</h1>
-          <Alert
-            type="danger"
-            style={{ opacity: this.state.error ? 1 : 0, marginBottom: 10 }}
-          >
-            {this.state.error}
-          </Alert>
-          <SearchForm
-            handleFormSubmit={this.handleFormSubmit}
-            handleInputChange={this.handleInputChange}
-            breeds={this.state.breeds}
-          />
-          <SearchResults results={this.state.results} />
+        <Container style={{ minHeight: "100vh" }}>
+          <h1 className="text-center">Search For an Employee</h1>
+        {/*   { <SearchForm
+             handleInputChange={handleInputChange} 
+             results={query}
+          />  } */}
+          <SearchResults />
         </Container>
       </div>
     );
   }
-}
+};
 
-export default Search;
+  export default Search;
+
