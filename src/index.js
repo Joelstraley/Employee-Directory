@@ -13,7 +13,7 @@ ReactDOM.render(
 );
 
 
-///Components
+///Components.
 ///manage component state
 ///respond to use events 
 

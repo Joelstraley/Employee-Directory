@@ -1,19 +1,26 @@
 import React from "react";
 import "./style.css";
 
-function SearchResults(props) {
+function TableBody(props) {
 /*     const notPurchased = props.groceries.filter(grocery => !grocery.purchased); */
 
   return (
     <tbody>
-        <tr>
-            <td>image</td>
-            <td>name</td>
-            <td>address</td>
-            <td>phone</td>
-            <td>email</td>
-        </tr>
+      <tr>
+        <th scope="row"></th>
+          <td><img src={props.img}/></td>
+          <td>{props.name}</td>
+          <td>{props.address}</td>
+          <td>{props.phone}</td>
+          <td>{props.email}</td></tr>
+
+      {/*   <tr scope="row"><td>{props.name}</td></tr>
+        <tr scope="row"><td>{props.address}</td></tr>
+        <tr scope="row"><td>{props.phone}</td></tr>
+        <tr scope="row"><td>{props.email}</td></tr> */}
+   
     </tbody>
+
 
 
 
@@ -35,4 +42,4 @@ function SearchResults(props) {
   );
 }
 
-export default SearchResults;
+export default TableBody;

@@ -2,17 +2,17 @@ import React from 'react';
 import "./style.css";
 
 function TableHeader(props) {
-    return (
-        <thead>
+    return /* (
+     /*    <thead>
             <tr>
                 <th className="image"> </th>
-                <th className="tableHead">Name</th>
-                <th className="tableHead">Address</th>
-                <th className="tableHead">Phone Number</th>
-                <th className="tableHead">Email</th>
+                <th className="tableHead">Name  </th>
+                <th className="tableHead">Address  </th>
+                <th className="tableHead">Phone Number  </th>
+                <th className="tableHead">Email </th>
             </tr>
-        </thead>
-    );
+        </thead> 
+    ); */
 }
 
 export default TableHeader;
