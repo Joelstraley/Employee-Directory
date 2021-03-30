@@ -3,11 +3,10 @@ import TableBody from "../TableBody";
 
 function Table(props){
 
-     
-      return (
-<table className="table">
+     return (
+        <table className="table">
           <thead>
-            <tr>
+            <tr onClick={props.onClick}>
                 <th scope="col" className="image tableHead">Thumbnail</th> 
                 <th scope="col" className="tableHead">Name</th>
                 <th scope="col" className="tableHead">Address  </th>
@@ -16,21 +15,7 @@ function Table(props){
             </tr>
         </thead>
         </table> 
-   /*       <tbody>
-        <tr scope="row">
-          <td><img src={props.img}/></td>
-          <td>{props.name}</td>
-          <td>{props.address}</td>
-          <td>{props.phone}</td>
-          <td>{props.email}</td></tr>
-
-      {   <tr scope="row"><td>{props.name}</td></tr>
-        <tr scope="row"><td>{props.address}</td></tr>
-        <tr scope="row"><td>{props.phone}</td></tr>
-        <tr scope="row"><td>{props.email}</td></tr> }
-   
-    </tbody>
-         */
+        
       )
     } 
 

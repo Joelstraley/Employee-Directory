@@ -1,7 +1,7 @@
 import React, { Component } from "react";
 import API from "../../utils/API";
 import Container from "../../components/Container";
-/* import Title from "../../components/Title"; */
+import Title from "../../components/Title";
 import SearchForm from "../../components/SearchForm";
 import Table from "../../components/Table"
 import TableHeader from "../../components/TableHeader"
@@ -18,6 +18,7 @@ class Search extends Component {
     searchValue: "",
     setSearchValue: "",
     filter: "",
+    sortType: 'asc',
     error: "" 
   } 
 
@@ -26,30 +27,29 @@ class Search extends Component {
       .then(response => response.json())
       .then( ({results: employees}) => this.setState({employees}))
   }
-/*          API.search()
-          .then(res => console.log(res),
-          this.setState({ name: res.results.name }))
-          .catch(err => console.log(err));
-      } 
-          
-  
-  handleInputChange = event => {
-        this.setState({ search: event.target.value });
 
-
-const filteredNames = ({ employees }) => {
-  return employees.toLowerCase().indexOf(searchValue.toLowerCase())
-  !== -1;
-};  */
 
 filter(e){
   e.preventDefault();
   this.setState({filter: e.target.value})
 }
+/* 
+onSort = sortType => {
+  this.setState({sortType});
+} */
+
 
 
   render(){
-  let employees = this.state.employees;
+
+
+
+    let employees = this.state.employees;
+  /*     const sorted = employees.sort((a, b) => {
+        const isReversed = (sortType === 'asc') ? 1 : -1;
+        return isReversed * a.name.localeCompare(b.name)
+      }) */
+  
       if(this.state.filter){
       employees = employees.filter( employee =>
         employee.name.first.toLowerCase()
@@ -59,11 +59,12 @@ filter(e){
     return (
       <div>
         <Container style={{ minHeight: "100vh" }}>
-          <h1 className="text-center">Search For an Employee</h1>
+          <Title />
           <SearchForm onChange={this.filter.bind(this)} />
           <Table  />  
           {employees.map((employee=> 
-          <TableBody key={employee.name.first + " " + employee.name.last}
+          <TableBody 
+                     key={employee.name.first + " " + employee.name.last}
                      img={employee.picture.thumbnail} 
                      name={employee.name.first + " " + employee.name.last} 
                      address={employee.location.street.number + " " + employee.location.street.name}

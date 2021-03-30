@@ -5,7 +5,8 @@ function TableBody(props) {
 /*     const notPurchased = props.groceries.filter(grocery => !grocery.purchased); */
 
   return (
-    <table className="table table-dark table-hover employeeText">
+    <table id="order" className="table table-dark table-hover employeeText">
+      
      {/*      <thead>
             <tr>
                 <th scope="col" className="image">Thumbnail</th> 
