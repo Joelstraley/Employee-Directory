@@ -7,17 +7,6 @@ import Table from "../../components/Table"
 import TableHeader from "../../components/TableHeader"
 import TableBody from "../../components/TableBody";
 
-
-  // When the component mounts, get a list of all available base breeds and update this.state.breeds
- /*  async componentDidMount() {
-      const url = "https://api.randomuser.me/";
-      const response = await fetch(url);
-      const data = await response.json();
-      this.setState({ employee: data.results[0]});
-      console.log(data.results[0]);
-  } */
-
-
 class Search extends Component {
   state = {
     img: "",
@@ -36,7 +25,7 @@ class Search extends Component {
       fetch("https://randomuser.me/api/?results=50&nat=us")
       .then(response => response.json())
       .then( ({results: employees}) => this.setState({employees}))
-  };
+  }
 /*          API.search()
           .then(res => console.log(res),
           this.setState({ name: res.results.name }))
@@ -53,12 +42,18 @@ const filteredNames = ({ employees }) => {
   !== -1;
 };  */
 
+filter(e){
+  this.setState({filter: e.target.value})
+}
+
+
   render(){
   let employees = this.state.employees;
       if(this.state.filter){
-      employees = employees.handleInputChange( employee =>
-        employee.name.toLowerCase()
-        .includes(this.state.filter.toLowerCase()))
+      employees = employees.filter( employee =>
+        employee.name.first.toLowerCase()
+        .includes(this.state.filter.toLowerCase()) || employee.name.last.toLowerCase()
+        .includes(this.state.filter.toLowerCase()) ) 
       }  
     return (
       <div>
@@ -66,6 +61,7 @@ const filteredNames = ({ employees }) => {
           <h1 className="text-center">Search For an Employee</h1>
           <SearchForm />
           <Table  />  
+          <input type="text" onChange={this.filter.bind(this)} />
           {employees.map((employee=> 
           <TableBody key={employee.name.first}
                      img={employee.picture.thumbnail} 
@@ -75,7 +71,8 @@ const filteredNames = ({ employees }) => {
                      email={employee.email}/>))}
 
         </Container>
-      </div>
+        </div>
+
     );
   }
 };
