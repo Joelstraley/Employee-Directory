@@ -22,7 +22,7 @@ class Search extends Component {
   } 
 
  componentDidMount() {
-      fetch("https://randomuser.me/api/?results=50&nat=us")
+   fetch("https://randomuser.me/api/?results=50&nat=us") 
       .then(response => response.json())
       .then( ({results: employees}) => this.setState({employees}))
   }
@@ -43,6 +43,7 @@ const filteredNames = ({ employees }) => {
 };  */
 
 filter(e){
+  e.preventDefault();
   this.setState({filter: e.target.value})
 }
 
@@ -59,11 +60,10 @@ filter(e){
       <div>
         <Container style={{ minHeight: "100vh" }}>
           <h1 className="text-center">Search For an Employee</h1>
-          <SearchForm />
+          <SearchForm onChange={this.filter.bind(this)} />
           <Table  />  
-          <input type="text" onChange={this.filter.bind(this)} />
           {employees.map((employee=> 
-          <TableBody key={employee.name.first}
+          <TableBody key={employee.name.first + " " + employee.name.last}
                      img={employee.picture.thumbnail} 
                      name={employee.name.first + " " + employee.name.last} 
                      address={employee.location.street.number + " " + employee.location.street.name}
