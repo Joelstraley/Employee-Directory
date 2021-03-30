@@ -17,20 +17,6 @@ import TableBody from "../../components/TableBody";
       console.log(data.results[0]);
   } */
 
-/*   function Search() {
-    const [query, setSearch] = useState("");
-    const [image, setImage] = useState("");
-    const [name, setName] = useState("");
-    const [address, setAddress] = useState("");
-    const [phone, setPhone] = useState("");
-    const [email, setEmail] = useState("");
-    const [error, setError] = useState("");
-
-  
-    useEffect(() => {
-      if (!query) {
-        return;
-      } if (query) { */
 
 class Search extends Component {
   state = {
@@ -40,63 +26,54 @@ class Search extends Component {
     phone: "",
     email: "",
     employees: [],
-
+    searchValue: "",
+    setSearchValue: "",
+    filter: "",
     error: "" 
   } 
- /*  constructor(){
-    super();
-    this.state = {
-      name="",
-      employees: []}
-  } */
 
  componentDidMount() {
       fetch("https://randomuser.me/api/?results=50&nat=us")
       .then(response => response.json())
       .then( ({results: employees}) => this.setState({employees}))
-   
-    
-  } 
-       /*  API.search()
+  };
+/*          API.search()
           .then(res => console.log(res),
           this.setState({ name: res.results.name }))
           .catch(err => console.log(err));
-      } */
+      } 
           
   
-/*   handleInputChange = event => {
+  handleInputChange = event => {
         this.setState({ search: event.target.value });
-      }; */
-filter(e){
-  this.setState({filter: e.target.value})
-}
+
+
+const filteredNames = ({ employees }) => {
+  return employees.toLowerCase().indexOf(searchValue.toLowerCase())
+  !== -1;
+};  */
+
   render(){
-    let employees = this.state.employees;
+  let employees = this.state.employees;
       if(this.state.filter){
-      employees = employees.filter( employee =>
+      employees = employees.handleInputChange( employee =>
         employee.name.toLowerCase()
         .includes(this.state.filter.toLowerCase()))
-      };
-
+      }  
     return (
       <div>
         <Container style={{ minHeight: "100vh" }}>
           <h1 className="text-center">Search For an Employee</h1>
-          <SearchForm onChange={this.filter.bind(this)} />
-          <Table  />
-          {employees.map(employee=> 
-          <TableBody img={employee.picture.thumbnail} 
+          <SearchForm />
+          <Table  />  
+          {employees.map((employee=> 
+          <TableBody key={employee.name.first}
+                     img={employee.picture.thumbnail} 
                      name={employee.name.first + " " + employee.name.last} 
                      address={employee.location.street.number + " " + employee.location.street.name}
                      phone={employee.phone}
-                     email={employee.email}/>)}
-{/*           <TableBody {employees.map(employee => <td>{employee.name}</td>)}/>
- */}        {/*   { <SearchForm
-             handleInputChange={handleInputChange} 
-             results={query}
-          />  } */}
-   
-      
+                     email={employee.email}/>))}
+
         </Container>
       </div>
     );

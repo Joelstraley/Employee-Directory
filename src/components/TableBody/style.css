@@ -1,3 +1,10 @@
 image {
     size: 100;
 }
+
+.employeeText {
+    justify-content: left;
+    align-content: center;
+    text-align: center;
+    border-radius: 4px;
+}
