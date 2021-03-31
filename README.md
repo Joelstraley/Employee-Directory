@@ -15,7 +15,7 @@ Screenshot:
 ![alt text](https://github.com/Joelstraley/Employee-Directory/blob/master/public/Employee%20Directory%20screenshot.png?raw=true)
 
 ## <a name="Technologies">Technologies:</a>
-React, Express, Node.js, Bootstrap
+React, Axios, Node.js, Bootstrap
 
 ## <a name="Questions">Questions</a>
 For questions please reach out to [github.com/JoelStraley](github.com/JoelStraley) 
